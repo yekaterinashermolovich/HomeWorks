@@ -1,31 +1,26 @@
-function Task (id, description, cost) {
+function Task (description, cost) {
 
-  if (new.target) {
-    throw new TypeError('calling Foo constructor without new is invalid');
-  }
+  if (!new.target) {
+    return new Task(description, cost);
+  } 
 
-        this.id = id; 
+        this.id="id" + " " +  Math.random().toString().slice();
         this.description = description;
         this.cost = cost; 
 
-      this.id = function() {
-        return this.id = "id" + " " +  Math.random().toString().slice();
+      id = function() {
+        return this.id; 
       } 
  
 
-        Object.defineProperty(this, 'description', {
-        get() {
-            return this.description;
-        }})
-
-
-      this.description = function() {
+       
+      description = function() {
         return this.description;
-       }
+      }  
 
-      
+          
 
-      this.cost = function() {
+      cost = function() {
         return this.cost;
       }  
 
@@ -37,7 +32,7 @@ function Task (id, description, cost) {
 
 
 
-const task = Task('12', 'text', 100);
+const task = Task('text', 100);
 console.log(task.id); 
 console.log(task.description);
 console.log(task.cost);
