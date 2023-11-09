@@ -63,7 +63,7 @@ class IncomeTask extends Task {
       class TasksController {
           tasks= []; 
 
-           addTask(...task) {
+           addTask(task) {
 
             if(this.tasks.length === 0) {
                 this.tasks.push(task)
