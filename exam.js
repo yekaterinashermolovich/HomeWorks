@@ -37,12 +37,46 @@ console.log(task.id);
 console.log(task.description);
 console.log(task.cost);
  
+console.log("----------------------------")
 
 class IncomeTask extends Task {
-    constructor(id, description, cost) {
-        super(id, description, cost);
+    constructor(description, cost) {
+        super(description, cost);
         
     }
 
+    makeDone(budget) {      
+      budget.income += this.cost;
+      }
+
+    makeUnDone(budget) {       
+      budget.income -= this.cost; 
+      }
+    }
+
    
-}
+      const budget = {
+        income:1000
+      }
+    
+
+    
+
+
+const incometask = new IncomeTask("text2", 200);
+console.log(incometask.id); 
+console.log(incometask.description);
+console.log(incometask.cost);
+
+console.log("----------------------------")
+
+console.log(budget);
+console.log(budget.income);
+incometask.makeDone(budget);
+console.log(budget.income);
+incometask.makeUnDone(budget);
+console.log(budget.income);
+console.log(budget);
+
+
+ 
