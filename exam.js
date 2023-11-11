@@ -95,16 +95,21 @@ class IncomeTask extends Task {
           return this.tasks;
         }
 
-        getTasksSortedBy(description, cost) {
+        getTasksSortedBy(sortBy) {
+          return [...this.tasks].sort(function(a, b) {
+          if (sortBy === 'description') {
+          const description1 = a.description.toLowerCase();
+          const description2 = b.description.toLowerCase();
+          if (description1 > description2) return 1;
+          if (description1 < description2) return -1;
+          } else if (sortBy === 'cost') {
+          return a.cost - b.cost;
+          }
+          return 0;
+          });
+
+          }
           
-          const a = a.description;
-          const b = b.description;
-
-          if (a > b) return 1;
-          if (a < b) return -1;
-
-            return 0;
-        }
 
       }
 
@@ -121,7 +126,7 @@ class IncomeTask extends Task {
       tasksController.deleteTask(task1);
       console.log(tasksController.tasks);
       console.log("----------------------------")
-      tasksController.getTasksSortedBy();
+      tasksController.getTasksSortedBy(sortBy);
       console.log(getTasksSortedBy());
       
 
