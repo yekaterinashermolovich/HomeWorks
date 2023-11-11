@@ -60,7 +60,11 @@ class IncomeTask extends Task {
       }
 
 
-      class TasksController {
+      class TasksController extends Task {
+        constructor(description, cost) {
+          super(description, cost);
+          
+      }
           tasks= []; 
 
            addTask(task) {
@@ -91,6 +95,17 @@ class IncomeTask extends Task {
           return this.tasks;
         }
 
+        getTasksSortedBy(description, cost) {
+          
+          const a = a.description;
+          const b = b.description;
+
+          if (a > b) return 1;
+          if (a < b) return -1;
+
+            return 0;
+        }
+
       }
 
 
@@ -106,10 +121,9 @@ class IncomeTask extends Task {
       tasksController.deleteTask(task1);
       console.log(tasksController.tasks);
       console.log("----------------------------")
-      tasksController.deleteTask(task2);
-      console.log(tasksController.tasks);
-      console.log("----------------------------");
-      tasksController.getTasks();
+      tasksController.getTasksSortedBy();
+      console.log(getTasksSortedBy());
+      
 
  
     
