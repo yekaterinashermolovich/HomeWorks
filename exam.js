@@ -87,6 +87,10 @@ class IncomeTask extends Task {
           }
         }
 
+        getTasks () {
+          return this.tasks;
+        }
+
       }
 
 
@@ -104,6 +108,9 @@ class IncomeTask extends Task {
       console.log("----------------------------")
       tasksController.deleteTask(task2);
       console.log(tasksController.tasks);
+      console.log("----------------------------");
+      tasksController.getTasks();
+
  
     
 
