@@ -76,16 +76,35 @@ class IncomeTask extends Task {
             this.tasks.push(task)
         }
 
+        deleteTask(task) {
+          let arrayTasks = this.tasks;
+          this.tasks = [];
+          for (let i=0; i<arrayTasks.length; i++) {
+            if(task.id !== arrayTasks[i].id) {
+              this.tasks.push(arrayTasks[i]);
+
+            }
+          }
+        }
+
       }
 
 
       let task1 = Task ("Fitness", 200);
       let task2 = Task ("Sport", 300);
+      let task3 = Task ("Shop", 100);
       let tasksController = new TasksController;
       tasksController.addTask(task1);
       tasksController.addTask(task2);
+      tasksController.addTask(task3);
       console.log(tasksController.tasks);
-
+      console.log("----------------------------")
+      tasksController.deleteTask(task1);
+      console.log(tasksController.tasks);
+      console.log("----------------------------")
+      tasksController.deleteTask(task2);
+      console.log(tasksController.tasks);
+ 
     
 
 
