@@ -124,20 +124,64 @@ class IncomeTask extends Task {
         #budget;
       
         constructor(initialBalance = 0) {
-          this.#tasksController = new TasksController();
+          this.#TasksController = new TasksController();
           this.#budget = {
             balance: initialBalance,
             income: 0,
             expenses: 0,
           };
         }
+
+        get balance() {
+          return this.#budget.balance;
+        }
+
+        get income() {
+          return this.#budget.income;
+        }
+
+        get expenses() {
+          return this.#budget.expenses;
+        }
+
+        CalculateBalance() {
+        this.#budget.balance + this.#budget.income - this.#budget.expenses;
+        }
+
+        getTasks () {
+        this.#tasksController.getTasks();
+
+        }
+
+        addTasks(...tasks) {
+        this.#tasksController.addTasks(...tasks);
+     
+       }
+
+       deleteTask () {
+
+       }
+
+       doneTask() {
+
+      }
+      unDoneTask() {
+
+      }
       }
 
 
+      const budgetController = new BudgetController(1000);
+  
+      const task1 = new IncomeTask('1', 'Salary', 500);
+      const task2 = new ExpenseTask('2', 'Groceries', 50);
+  
+      budgetController.addTasks(task1, task2);
+  
+      console.log('Initial Balance:', budgetController.balance);
+      console.log('Tasks:', budgetController.getTasks());
 
-
-
-      let task1 = Task ("Fitness", 200);
+      /* let task1 = Task ("Fitness", 200);
       let task2 = Task ("Sport", 300);
       let task3 = Task ("Shop", 100);
       let tasksController = new TasksController;
@@ -152,7 +196,7 @@ class IncomeTask extends Task {
       tasksController.getTasksSortedBy(sortBy);
       console.log(getTasksSortedBy());
       
-
+ */
  
     
 
