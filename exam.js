@@ -110,9 +110,31 @@ class IncomeTask extends Task {
           });
 
           }
-          
+
+        getFilteredTasks(filtered) {
+          this.task =[];
+        }
+
 
       }
+
+
+      class BudgetController {
+        #tasksController;
+        #budget;
+      
+        constructor(initialBalance = 0) {
+          this.#tasksController = new TasksController();
+          this.#budget = {
+            balance: initialBalance,
+            income: 0,
+            expenses: 0,
+          };
+        }
+      }
+
+
+
 
 
       let task1 = Task ("Fitness", 200);
