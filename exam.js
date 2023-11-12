@@ -7,6 +7,7 @@ function Task (description, cost) {
         this.id="id" + " " +  Math.random().toString().slice();
         this.description = description;
         this.cost = cost; 
+        this.completed = false;
 
       id = function() {
         return this.id; 
