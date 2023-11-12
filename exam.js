@@ -61,7 +61,7 @@ class IncomeTask extends Task {
       }
 
 
-      class TasksController extends Task {
+      class TasksController extends IncomeTask {
         constructor(description, cost) {
           super(description, cost);
           
@@ -119,13 +119,12 @@ class IncomeTask extends Task {
       }
 
 
-      class BudgetController {
-        #tasksController;
-        #budget;
+      class BudgetController extends TasksController {
       
-        constructor(initialBalance = 0) {
-          this.#TasksController = new TasksController();
-          this.#budget = {
+        constructor(initialBalance = 0, description, cost) {
+          super(description, cost);
+          this.TasksController = new TasksController();
+          this.budget = {
             balance: initialBalance,
             income: 0,
             expenses: 0,
@@ -133,28 +132,28 @@ class IncomeTask extends Task {
         }
 
         get balance() {
-          return this.#budget.balance;
+          return this.budget.balance;
         }
 
         get income() {
-          return this.#budget.income;
+          return this.budget.income;
         }
 
         get expenses() {
-          return this.#budget.expenses;
+          return this.budget.expenses;
         }
 
         CalculateBalance() {
-        this.#budget.balance + this.#budget.income - this.#budget.expenses;
+        this.budget.balance + this.budget.income - this.budget.expenses;
         }
 
         getTasks () {
-        this.#tasksController.getTasks();
+        this.tasksController.getTasks();
 
         }
 
         addTasks(...tasks) {
-        this.#tasksController.addTasks(...tasks);
+        this.tasksController.addTasks(...tasks);
      
        }
 
@@ -171,7 +170,7 @@ class IncomeTask extends Task {
       }
 
 
-      const budgetController = new BudgetController(1000);
+      const budgetController = new BudgetController(1000, "Fitness", 500);
   
       const task1 = new IncomeTask('1', 'Salary', 500);
       const task2 = new ExpenseTask('2', 'Groceries', 50);
