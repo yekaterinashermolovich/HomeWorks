@@ -60,48 +60,85 @@ function Task (description, cost) {
     
        
           const budget = {
-            income:1000
+            income:1000,
+            expenses: 300
+            
           }
+
+          class ExpenseTask extends Task {
+            constructor(description, cost) {
+                super(description, cost);
+                
+            }
+        
+            makeDone(budget) {      
+              budget.expenses += this.cost;
+              }
+        
+            makeUnDone(budget) {       
+              budget.expenses -= this.cost; 
+              }
+            }
+        
+           
+      
 
 
           class TasksController {
-            constructor() {
-            this.tasks= []; 
+            #tasks=[];
+
+            
+            get tasks () {
+            return this.#tasks;
           }
+
+            addTask(...tasks) {
   
-             addTask(task) {
-  
-              if(this.tasks.length === 0) {
-                  this.tasks.push(task)
+              if(tasks.length === 0) {
+                  tasks.push(task)
               }
-              for(let i = 0; i < this.tasks.length; i++) {
-                  if(this.task.id === this.tasks[i].id) {
-                      return undefined
+              for(let i = 0; i < tasks.length; i++) {
+                  if(this.task.id !== tasks[i].id) {
+                    tasks.push(task);
                   }
               }
-              this.tasks.push(task)
+
+              for (const task of tasks) {
+                if(this.task.id !== tasks[i].id) {
+                  tasks.push(task);
+              }
+              
           }
   
         }
+      }
 
         
       let task1 = Task ("Fitness", 200);
       let task2 = Task ("Sport", 300);
-      console.log(task1);
-      /* let tasksController = new TasksController;
-      tasksController.addTask(task1);
+      console.log(task1.id);
+      let tasksController = new TasksController;
+      tasksController.addTask(task1.description);
       tasksController.addTask(task2);
-      console.log(tasksController.tasks[0]);
-   */
+      console.log(tasksController.tasks[0]); 
+   
 
           
         
     
 
-       /*  const incometask = new IncomeTask("","text2", 200);
+       /*  const incometask = new IncomeTask("Fitness", 200);
         console.log(incometask.id); 
         console.log(incometask.description);
         console.log(incometask.cost);
+ 
+        console.log("----------------------------")
+
+
+        const expensetask = new ExpenseTask("Sport", 500);
+        console.log(expensetask.id); 
+        console.log(expensetask.description);
+        console.log(expensetask.cost);
 
         console.log("----------------------------")
 
@@ -110,6 +147,15 @@ function Task (description, cost) {
         incometask.makeDone(budget);
         console.log(budget.income);
         incometask.makeUnDone(budget);
-        console.log(budget.income);
+        console.log(budget.income); 
+
+        console.log("----------------------------")
+
+        console.log(budget.expenses);
+        expensetask.makeDone(budget);
+        console.log(budget.expenses);
+        expensetask.makeUnDone(budget);
+        console.log(budget.expenses);
+
         
- */
+  */
