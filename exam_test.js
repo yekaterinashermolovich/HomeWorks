@@ -79,50 +79,66 @@ function Task (description, cost) {
               budget.expenses -= this.cost; 
               }
             }
-        
+           
+            class StatusTask extends Task {
+              constructor(description, cost, status) {
+                  super(description, cost);
+
+                  return {
+                    id: this.id,
+                    description: description,
+                    cost: cost,
+                    status: status
+
+                  }
+                  
+              }
+          
+              m
+              }  
            
       
 
 
           class TasksController {
-            #tasks=[];
+            #statustasks=[];
 
             
-            get tasks () {
-            return [...this.#tasks];
+            get statustasks () {
+            return [...this.#statustasks];
           }
 
             addTask(...newTasks) {
   
              
              doubleCheck: for(let i = 0; i < newTasks.length; i++) {
-                for(let j = 0; j<this.#tasks.length; j++) {
-                  if(this.#tasks[j].id === newTasks[i].id) {
+                for(let j = 0; j<this.#statustasks.length; j++) {
+                  if(this.#statustasks[j].id === newTasks[i].id) {
                     continue doubleCheck;
                   }
               }
 
-             this.#tasks.push(newTasks[i]);
+             this.#statustasks.push(newTasks[i]);
 
             }
               
           }
 
           deleteTask() {
-            let index = this.#tasks.indexOf(...this.#tasks);
+            let index = this.#statustasks.indexOf(...this.#statustasks);
 
             if(index !== -1) {
-              this.#tasks.splice(index, 1);
+              this.#statustasks.splice(index, 1);
             }
             
          }
 
          getTasks () {
-          return [...this.#tasks];
+          return [...this.#statustasks];
         }
-
+ 
           getTasksSortedBy(sortBy) {
-          return [...this.tasks].sort(function(a, b) {
+          return [...this.#statustasks].sort(function(a, b) {
           if (sortBy === 'description') {
           const description1 = a.description.toLowerCase();
           const description2 = b.description.toLowerCase();
@@ -130,31 +146,44 @@ function Task (description, cost) {
           if (description1 < description2) return -1;
           } else if (sortBy === 'cost') {
           return a.cost - b.cost;
+          } else if (sortBy === "status") {
+            const status1 = a.status.toLowerCase();
+            const status2 = b.status.toLowerCase();
+            if (status1 > status2) return 1;
+            if (status1 < status2) return -1;  
           }
           return 0;
           });
 
           }
+
+          getFilteredTasks = function() {
+            const filteredTasks = [];
+              
+          }
+
         }
       
 
-        
-      let task1 = Task ("Fitness", 200);
-      let task2 = Task ("Sport", 300);
-      console.log(task1.id);
+      
+      
+      let statustask1 = new StatusTask("Fitness", 200, "done");
+      let statustask2 = new StatusTask("Sport", 300, "not done"); 
+      console.log(statustask1.description); 
+      console.log(statustask2.description);
       let tasksController = new TasksController;
-      tasksController.addTask(task1);
-      tasksController.addTask(task2);
-      /* console.log(tasksController.tasks[0].description); 
-      console.log(tasksController.tasks[1].description);  */
-      /* tasksController.deleteTask([0]);
-      console.log(tasksController.tasks);
+      tasksController.addTask(statustask1);
+      tasksController.addTask(statustask2);
+      console.log("----------------------------");
+      console.log(tasksController.statustasks[0].status); 
+      console.log(tasksController.statustasks[1]);
+      tasksController.deleteTask([0]);
+      console.log(tasksController.statustasks);
       console.log("----------------------------");
       tasksController.getTasks();
-      console.log(tasksController.tasks[0].description); 
-      */
-      console.log(tasksController.getTasksSortedBy("description").description);
-
+      console.log(tasksController.statustasks[0].description); 
+      console.log(tasksController.getTasksSortedBy("description").description); 
+   
           
         
     
