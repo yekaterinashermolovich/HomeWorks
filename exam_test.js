@@ -89,39 +89,71 @@ function Task (description, cost) {
 
             
             get tasks () {
-            return this.#tasks;
+            return [...this.#tasks];
           }
 
-            addTask(...tasks) {
+            addTask(...newTasks) {
   
-              if(tasks.length === 0) {
-                  tasks.push(task)
-              }
-              for(let i = 0; i < tasks.length; i++) {
-                  if(this.task.id !== tasks[i].id) {
-                    tasks.push(task);
+             
+             doubleCheck: for(let i = 0; i < newTasks.length; i++) {
+                for(let j = 0; j<this.#tasks.length; j++) {
+                  if(this.#tasks[j].id === newTasks[i].id) {
+                    continue doubleCheck;
                   }
               }
 
-              for (const task of tasks) {
-                if(this.task.id !== tasks[i].id) {
-                  tasks.push(task);
-              }
+             this.#tasks.push(newTasks[i]);
+
+            }
               
           }
-  
+
+          deleteTask() {
+            let index = this.#tasks.indexOf(...this.#tasks);
+
+            if(index !== -1) {
+              this.#tasks.splice(index, 1);
+            }
+            
+         }
+
+         getTasks () {
+          return [...this.#tasks];
         }
-      }
+
+          getTasksSortedBy(sortBy) {
+          return [...this.tasks].sort(function(a, b) {
+          if (sortBy === 'description') {
+          const description1 = a.description.toLowerCase();
+          const description2 = b.description.toLowerCase();
+          if (description1 > description2) return 1;
+          if (description1 < description2) return -1;
+          } else if (sortBy === 'cost') {
+          return a.cost - b.cost;
+          }
+          return 0;
+          });
+
+          }
+        }
+      
 
         
       let task1 = Task ("Fitness", 200);
       let task2 = Task ("Sport", 300);
       console.log(task1.id);
       let tasksController = new TasksController;
-      tasksController.addTask(task1.description);
+      tasksController.addTask(task1);
       tasksController.addTask(task2);
-      console.log(tasksController.tasks[0]); 
-   
+      /* console.log(tasksController.tasks[0].description); 
+      console.log(tasksController.tasks[1].description);  */
+      /* tasksController.deleteTask([0]);
+      console.log(tasksController.tasks);
+      console.log("----------------------------");
+      tasksController.getTasks();
+      console.log(tasksController.tasks[0].description); 
+      */
+      console.log(tasksController.getTasksSortedBy("description").description);
 
           
         
