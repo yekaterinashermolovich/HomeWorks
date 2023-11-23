@@ -207,15 +207,15 @@ function Task(description, cost) {
       }
   
       deleteTask(task) {
-          const index_bc = this.#tasksController.tasks.indexOf(this.#tasksController.task);
+          const index_bc = this.#tasksController.getTasks().indexOf(task);
     
           if (index_bc !== -1) {
-              console.log(`Task ${this.#tasksController.task.id} isn't recognized`)
+              console.log(`Task ${task.id} isn't recognized`)
               return;
           };
           
           if (this.#tasksController.completedTasks()) {
-               this.task.makeUnDone(this.#budget)  
+               task.makeUnDone(this.#budget)  
           }
   
           this.#tasksController.deleteTask(task);
@@ -228,6 +228,8 @@ function Task(description, cost) {
               console.log(`Task ${this.#tasksController.task.id} isn't recognized`)
               return;
           };
+
+          // Need to rewrite (this.#tasksController.completedTasks()
           
           if (this.#tasksController.completedTasks()) {
                console.log("Task is already done"); 
