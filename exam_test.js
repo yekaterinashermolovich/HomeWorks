@@ -99,6 +99,10 @@ function Task(description, cost) {
     getTasks() {
         return [...this.#tasks];
     }
+
+    getCompletedTasks() {
+        return [...this.#completedTasks];
+    }
   
     #isTaskCompleted(task) {
         return this.#completedTasks.indexOf(task) !== -1;
@@ -213,8 +217,10 @@ function Task(description, cost) {
               console.log(`Task ${task.id} isn't recognized`)
               return;
           };
+
+          const index_bcct = this.#tasksController.getCompletedTasks().indexOf(task);
           
-          if (this.#tasksController.completedTasks()) {
+          if (index_bcct !== -1) {
                task.makeUnDone(this.#budget)  
           }
   
@@ -222,35 +228,38 @@ function Task(description, cost) {
       }
   
       doneTask(task) {
-          const index_dt = this.#tasksController.tasks.indexOf(this.#tasksController.task);
+          const index_dt = this.#tasksController.getTasks().indexOf(task);
     
           if (index_dt !== -1) {
-              console.log(`Task ${this.#tasksController.task.id} isn't recognized`)
+              console.log(`Task ${task.id} isn't recognized`)
               return;
           };
 
-          // Need to rewrite (this.#tasksController.completedTasks()
+          const index_dtct = this.#tasksController.getCompletedTasks().indexOf(task);
           
-          if (this.#tasksController.completedTasks()) {
-               console.log("Task is already done"); 
+          for (const index_dtct in this.#tasksController.completedTasks) {
+               console.log("Task is already done");
+               return; 
           }
   
-          this.#tasksController.makeDone(task);
+          task.makeDone(this.#budget);
       }
       
       unDoneTask(task) {
-          const index_ut = this.#tasksController.tasks.indexOf(this.#tasksController.task);
+          const index_ut = this.#tasksController.getTasks().indexOf(task);
     
           if (index_ut !== -1) {
-              console.log(`Task ${this.#tasksController.task.id} isn't recognized`)
+              console.log(`Task ${task.id} isn't recognized`)
               return;
           };
-          
-          if (!this.#tasksController.completedTasks()) {
+         
+          const index_utct = this.#tasksController.getCompletedTasks().indexOf(task);
+
+          if (index_utct !== -1) {
                console.log("Task has not been done before"); 
           }
   
-          this.#tasksController.makeUnDone(task);
+          task.makeUnDone(this.#budget);
       }
   }
   
