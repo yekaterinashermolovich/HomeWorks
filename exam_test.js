@@ -236,8 +236,8 @@ function Task(description, cost) {
           return this.#tasksController.getTasks();
       }
   
-      addTasks (task) {
-          return this.#tasksController.addTasks(...this.#tasks);
+      addTasks (...tasks) {
+          return this.#tasksController.addTasks(...tasks);
       }
   
       deleteTask(task) {
@@ -293,9 +293,23 @@ function Task(description, cost) {
       }
   }
    
+
+
+const budgetController = new BudgetController(0);
+const taskController = new TasksController();
+const task1 = new IncomeTask("Fitness", 200);
+const task2 = new IncomeTask("Sport", 300);
+
+taskController.addTask(task1);
+taskController.addTask(task2);
+budgetController.addTasks(task1, task2);
+budgetController.doneTask(task1);
+budgetController.unDoneTask(task4);
+
+console.log(budgetController.calculateBalance());
   
   
-  const task1 = new IncomeTask("Fitness", 200);
+  /* const task1 = new IncomeTask("Fitness", 200);
   const task2 = new IncomeTask("Sport", 300);
   
   
@@ -309,21 +323,13 @@ function Task(description, cost) {
   
   console.log("----------------------------");
   console.log(tasksController.getTasks()[0]);
-  console.log(tasksController.getTasks()[1]);
+  console.log(tasksController.getTasks()[1]); */
   
   /* asksController.deleteTask([0]);
   
   console.log(tasksController.getTasks());
   console.log("----------------------------");
    */
-  tasksController.getTasks();
-  
-  console.log(tasksController.getTasks()[0].description);
-  
-  console.log("----------------------------");
-
-  tasksController.getFilteredTasks();
-  console.log(getFilteredTasks(tasksController, 'description'));
   
   
   /* for (const task of tasksController.getTasksSortedBy("status")) {
