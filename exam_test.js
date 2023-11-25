@@ -169,10 +169,14 @@ function Task(description, cost) {
         });
   
     }
+
+    getFilteredTasks(arr, query) {
+        return arr.filter((el) => el.toLowerCase().includes(query.toLowerCase()));
+    }
   
   }
   
-  class BudgetController {
+  /* class BudgetController {
       #tasksController;
       #budget;
   
@@ -237,7 +241,7 @@ function Task(description, cost) {
 
           const index_dtct = this.#tasksController.getCompletedTasks().indexOf(task);
           
-          for (const index_dtct in this.#tasksController.completedTasks) {
+          if (this.#tasksController.isTaskCompleted(task)) {
                console.log("Task is already done");
                return; 
           }
@@ -249,24 +253,26 @@ function Task(description, cost) {
           const index_ut = this.#tasksController.getTasks().indexOf(task);
     
           if (index_ut !== -1) {
-              console.log(`Task ${task.id} isn't recognized`)
+              console.log(`Task ${task.id} isn't recognized`);
               return;
-          };
+          }
          
           const index_utct = this.#tasksController.getCompletedTasks().indexOf(task);
 
-          if (index_utct !== -1) {
-               console.log("Task has not been done before"); 
+          if (!this.#tasksController.isTaskCompleted(task)) {
+               console.log("Task has not been done before");
+               return; 
           }
   
           task.makeUnDone(this.#budget);
       }
   }
-  
+   */
   
   
   const task1 = new IncomeTask("Fitness", 200);
   const task2 = new IncomeTask("Sport", 300);
+  
   
   console.log(task1.description);
   console.log(task2.description);
@@ -280,22 +286,31 @@ function Task(description, cost) {
   console.log(tasksController.getTasks()[0]);
   console.log(tasksController.getTasks()[1]);
   
-  tasksController.deleteTask([0]);
+  /* asksController.deleteTask([0]);
   
   console.log(tasksController.getTasks());
   console.log("----------------------------");
-  
+   */
   tasksController.getTasks();
   
   console.log(tasksController.getTasks()[0].description);
   
   console.log("----------------------------");
+
+  tasksController.getFilteredTasks();
+  console.log(getFilteredTasks(tasksController, 'description'));
   
   
-  for (const task of tasksController.getTasksSortedBy("status")) {
+  /* for (const task of tasksController.getTasksSortedBy("status")) {
     console.log(task.description);
   }
-  
+
+  console.log("-------------------------------");
+
+  const budgetcontroller = new BudgetController;
+  budgetcontroller.unDoneTask(task1);
+  console.log(tasksController.getCompletedTasks())
+   */
   
   
   /*  const incometask = new IncomeTask("Fitness", 200);
