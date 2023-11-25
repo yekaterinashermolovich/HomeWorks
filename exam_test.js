@@ -170,13 +170,39 @@ function Task(description, cost) {
   
     }
 
-    getFilteredTasks(arr, query) {
-        return arr.filter((el) => el.toLowerCase().includes(query.toLowerCase()));
-    }
+    getFilteredTasks(filter) {
+        return this.#tasks.filter(function (task) {
+          if (filter.description) {
+            if (!task.description.toLowerCase().includes(filter.description.toLowerCase())) {
+              return false;
+            }
+          }
+    
+          if (typeof filter.isIncome === 'boolean') {
+            if (filter.isIncome && !(task instanceof IncomeTask)) {
+              return false;
+            }
+            if (!filter.isIncome && !(task instanceof ExpenseTask)) {
+              return false;
+            }
+          }
+    
+          if (typeof filter.isCompleted === 'boolean') {
+            if (filter.isCompleted && !task.isCompleted) {
+              return false;
+            }
+            if (!filter.isCompleted && task.isCompleted) {
+              return false;
+            }
+          }
+    
+          return true;
+        });
+      }
   
   }
   
-  /* class BudgetController {
+  class BudgetController {
       #tasksController;
       #budget;
   
@@ -239,7 +265,7 @@ function Task(description, cost) {
               return;
           };
 
-          const index_dtct = this.#tasksController.getCompletedTasks().indexOf(task);
+          
           
           if (this.#tasksController.isTaskCompleted(task)) {
                console.log("Task is already done");
@@ -257,7 +283,6 @@ function Task(description, cost) {
               return;
           }
          
-          const index_utct = this.#tasksController.getCompletedTasks().indexOf(task);
 
           if (!this.#tasksController.isTaskCompleted(task)) {
                console.log("Task has not been done before");
@@ -267,7 +292,7 @@ function Task(description, cost) {
           task.makeUnDone(this.#budget);
       }
   }
-   */
+   
   
   
   const task1 = new IncomeTask("Fitness", 200);
