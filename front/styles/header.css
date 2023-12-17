@@ -1,0 +1,20 @@
+.header {
+    display: flex;
+    justify-content: flex-start;
+}
+
+
+.header > .logo > img {
+    width: 135px;
+}
+
+.header > * {
+    width: 135px;
+    background-color: yellow;
+    outline: 1px solid;
+}
+
+.header > :nth-child(2) {
+    margin-right: auto;
+}
+
