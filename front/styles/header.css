@@ -1,20 +1,46 @@
 .header {
     display: flex;
     justify-content: flex-start;
+    gap: 16px;
+    
 }
 
 
 .header > .logo > img {
-    width: 135px;
+    width: 190px;
+}
+
+.header > .call-center > img {
+    height: 18px;
+}
+
+.header > .time-schedule > img {
+    height: 27px;
+}
+
+.header > .lang:hover {
+    z-index: 1;
+}
+
+.header > .lang:hover {
+    cursor: pointer;
+}
+
+.header > .lang img {
+    width: 40px;
+}
+
+.header > .lang ul {
+    display: none;
 }
 
 .header > * {
-    width: 135px;
-    background-color: yellow;
-    outline: 1px solid;
+   /*  width: 135px; */
+   /*  background-color: yellow; */
+    /* outline: 1px solid; */
 }
 
-.header > :nth-child(2) {
+.header > :nth-child(1) {
     margin-right: auto;
 }
 

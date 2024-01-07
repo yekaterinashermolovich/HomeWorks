@@ -19,21 +19,22 @@ footer {
 
 header {
     grid-area: header;
-    background-color: red;
+    border-bottom: 1px solid #e6e6e6;
+   /*  background-color: red; */
 
 
 }
 
 main {
     grid-area: main;
-    background-color: green;
+   /*  background-color: green; */
 
 
 }
 
 footer {
     grid-area: footer;
-    background-color: blue;
+    /* background-color: blue; */
 
 
 }
@@ -43,6 +44,6 @@ footer {
     width: 100%;
     max-width: 1110px;
     padding: 16px;
-    background-color: grey;
+   /*  background-color: grey; */
 
 }
