@@ -8,6 +8,21 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <div id="app">
+        <h1>YOUR TASK MANAGER</h1>
+        <div class="container">
+          <input type="text" id="taskName" placeholder="Add your task">
+          <textarea id="taskDescription" placeholder="Task description"></textarea>
+          <button onclick="addTask()">Add</button>
+        </div>
+        <div>
+          <h2>List of all Tasks</h2>
+          <div id="incompletedTasks"></div>
+        </div>
+        <div>
+          <h2>Completed Tasks</h2>
+          <div id="completedTasks"></div>
+        </div>
+      </div>
 </body>
 </html>

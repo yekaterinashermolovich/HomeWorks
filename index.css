@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+
+   h1 {
+    margin-left: 0 auto;
+    color: darkblue;
+  }
+ 
+  .container {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+  }
+
+  textarea {
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  input {
+    text-align: center;
+    vertical-align: middle;
+
+  }
+  
+  #app {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  input, textarea, button {
+    margin-bottom: 10px;
+  }
+  
+  div > div {
+    margin-bottom: 20px;
+  }
+  
+  div > div > h2 {
+    margin-bottom: 10px;
+  }
+  
+  div > div > div {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  button {
+    cursor: pointer;
+  }
+  
