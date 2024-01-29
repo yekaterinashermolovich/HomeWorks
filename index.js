@@ -77,6 +77,36 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  function toggleTaskCompletion(taskId) {
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks = tasks.map(task => {
+      if (task.id === taskId) {
+        task.completed = !task.completed;
+      }
+      return task;
+    });
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    loadTasks();
+  }
+  
+  
+  function deleteTask(taskId) {
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks = tasks.filter(task => task.id !== taskId);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    loadTasks();
+  }
+  
+  
+  function generateUniqueId() {
+    return "id" + Math.random().toString(16).slice(2)
+  }
+  
+  
+  
+  
+  
   
   
   
