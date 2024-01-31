@@ -27,8 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   function editTask(taskId) {
-    window.location.href = `http://127.0.0.1:5500/edit.html=${taskId}`;
+    window.location.href = `http://127.0.0.1:5500/edit/edit.html?id=${taskId}`;
   }
+
   function saveTask(task) {
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     tasks.push(task);
@@ -48,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
       checkbox.checked = task.completed;
+      console.log(task.completed)
       checkbox.addEventListener('change', () => toggleTaskCompletion(task.id));
       
       const taskInfo = document.createElement('div');
