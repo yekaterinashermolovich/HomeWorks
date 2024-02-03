@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.location.href = `http://127.0.0.1:5500/edit/edit.html?id=${taskId}`;
   }
 
-  function saveTask(task) {
+  export function saveTask(task) {
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     tasks.unshift(task);
     localStorage.setItem('tasks', JSON.stringify(tasks));
