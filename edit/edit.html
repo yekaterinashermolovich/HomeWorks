@@ -7,8 +7,22 @@
     <script defer src="edit.js"></script>
     <title>Document</title>
 </head>
-<body>
+<body> 
+    <div class="container">
+        <h1>Edit your Task</h1>
+        <form id="editTaskForm">
+            <div class="form-group">
+                <label for="taskName"><h4>Task Name:</h4></label>
+                <input type="text" id="taskName" name="taskName">                 
+            </div>
+            <div class="form-group">
+                <label for="taskDescription"><h4>Description:</h4></label>
+                <textarea id="taskDescription" name="taskDescription"></textarea>      
+            </div>
+            <button type="submit">Submit</button>
 
+        </form>
+    </div>
     
     
 </body>

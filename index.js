@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function saveTask(task) {
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    tasks.push(task);
+    tasks.unshift(task);
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }
 
