@@ -1,28 +1,51 @@
 <!DOCTYPE html>
-<html lang="en"> 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
-    <script defer type="module" src="index.js"></script>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <script defer src="index.js"></script>
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <div id="app">
-        <h1>YOUR TASK MANAGER</h1>
-        <div class="container">
-          <input type="text" id="taskName" placeholder="Add your task">
-          <textarea id="taskDescription" placeholder="Task description"></textarea>
-          <button onclick="addTask()">Add</button>
-        </div>
-        <div>
-          <h2>List of all Tasks</h2>
-          <div id="incompletedTasks"></div>
-        </div>
-        <div>
-          <h2>Completed Tasks</h2>
-          <div id="completedTasks"></div>
-        </div>
+      <h1>YOUR TASK MANAGER</h1>
+      <div class="container">
+        <input type="text" id="taskName" placeholder="Add your task" />
+        <textarea
+          id="taskDescription"
+          placeholder="Task description"
+        ></textarea>
+        <button onclick="addTask()">Add</button>
       </div>
-</body>
+      <div>
+        <h2>List of all Tasks</h2>
+        <div id="filterContainer">
+          <h3>Filter Tasks</h3>
+          <div class="select_wrapper">
+            <select id="filterSelect" onchange="filterTasks()">
+              <option value="all">All Tasks</option>
+              <option value="completed">Completed Tasks</option>
+              <option value="incompleted">Incompleted Tasks</option>
+            </select>
+          </div>
+        </div>
+        <div id="sortContainer">
+          <h3>Sort Tasks</h3>
+          <div class="select_wrapper">
+            <select id="sortSelect" onchange="sortTasks()">
+              <option value="date">Sort by Date</option>
+              <option value="title">Sort by Title</option>
+            </select>
+          </div>
+        </div>
+        <div id="incompletedTasks"></div>
+      </div>
+
+      <div>
+        <h2>Completed Tasks</h2>
+        <div id="completedTasks"></div>
+      </div>
+    </div>
+  </body>
 </html>

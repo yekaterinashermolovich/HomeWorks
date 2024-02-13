@@ -64,6 +64,21 @@ document.addEventListener('DOMContentLoaded', () => {
     completedTasksDiv.innerHTML = '';
   
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+    if (sortByDate) {
+      tasks.sort((a, b) => new Date(b.date) - new Date(a.date));
+    }
+  
+    if (sortByTitle) {
+      tasks.sort((a, b) => a.name.localeCompare(b.name));
+    }
+  
+    
+    if (filterCompleted === "completed") {
+      tasks = tasks.filter((task) => task.completed);
+    } else if (filterCompleted === "incompleted") {
+      tasks = tasks.filter((task) => !task.completed);
+    }
   
     tasks.forEach(task => {
       const taskDiv = document.createElement('div');
