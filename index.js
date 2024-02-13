@@ -53,7 +53,11 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }
 
-  function loadTasks() {
+  function loadTasks(
+    sortByDate = false,
+    sortByTitle = false,
+    filterCompleted = "all"
+  ) {
     const incompletedTasksDiv = document.getElementById('incompletedTasks');
     const completedTasksDiv = document.getElementById('completedTasks');
     incompletedTasksDiv.innerHTML = '';
