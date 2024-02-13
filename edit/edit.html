@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="edit.css">
-    <script defer src="edit.js"></script>
+    <script type="module" defer src="edit.js"></script>
     <title>Document</title>
 </head>
 <body> 
@@ -19,7 +19,7 @@
                 <label for="taskDescription"><h4>Description:</h4></label>
                 <textarea id="taskDescription" name="taskDescription"></textarea>      
             </div>
-            <button type="submit">Submit</button>
+            <button type="submit" onclick="editTask()">Submit</button>
 
         </form>
     </div>

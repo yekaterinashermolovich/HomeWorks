@@ -15,6 +15,23 @@ document.addEventListener('DOMContentLoaded', () => {
       completed: false,
       edited: false,
     };
+
+    let taskNameValue = document.getElementById("taskName").value;
+    let taskDescriptionValue = document.getElementById("taskDescription").value;
+
+    let taskNameRegex = /^[a-zA-Z0-9\s]+$/;
+    let taskDescriptionRegex = /^[a-zA-Z0-9\s]+$/;
+
+  
+  if (!taskNameRegex.test(taskNameValue)) {
+    alert("Not correct name");
+    return false;
+  }
+
+  if (!taskDescriptionRegex.test(taskDescriptionValue)) {
+    alert("Not correct description");
+    return false;
+  }
   
     saveTask(task);
     clearInputFields();
@@ -30,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.location.href = `http://127.0.0.1:5500/edit/edit.html?id=${taskId}`;
   }
 
-  export function saveTask(task) {
+   function saveTask(task) {
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     tasks.unshift(task);
     localStorage.setItem('tasks', JSON.stringify(tasks));
