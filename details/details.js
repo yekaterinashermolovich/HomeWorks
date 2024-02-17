@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded", loadTaskDetails);
+
 function loadTaskDetails() {
     const urlParams = new URLSearchParams(window.location.search);
     const taskId = urlParams.get("id");
@@ -23,4 +25,4 @@ function goBack() {
     window.history.back();
   }
   
-  document.addEventListener("DOMContentLoaded", loadTaskDetails);
+  
