@@ -29,7 +29,7 @@ input {
 #taskName,
 #taskDescription {
   min-width: 250px;
-  border-radius: 15px;
+  /* border-radius: 15px; */
 }
 
 #app {
@@ -58,13 +58,13 @@ div > div > div {
   border: 1px solid #6300ff;
   /* padding: 10px; */
   margin-bottom: 10px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
 }
 
 button {
   cursor: pointer;
   min-width: 200px;
-  border-radius: 15px;
+  /* border-radius: 15px; */
   color: white;
   background-color: #00f;
 }
