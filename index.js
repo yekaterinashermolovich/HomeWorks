@@ -146,7 +146,7 @@ function generateUniqueId() {
 }
 
 function viewTaskDetails(taskId) {
-  const detailsUrl = `/details/?id=${taskId}`;
+  const detailsUrl = `details/details.html?id=${taskId}`;
   window.location.assign(detailsUrl);
 }
 

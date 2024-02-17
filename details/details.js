@@ -9,10 +9,9 @@ function loadTaskDetails() {
     if (task) {
       const taskDetailsDiv = document.getElementById("taskDetails");
       taskDetailsDiv.innerHTML = `
-            <p class="taks__title"><b>Title</b>: ${task.name}</p>
-            <p class="taks__title"><b>Description</b>: ${task.description}</p>
-            <p class="taks__title"><b>Date:</b> ${task.date}</p>
-            <button onclick="goBack()" class="taks__title-button">Back</button>
+            <p class="taks_title"><b>Title</b>: ${task.name}</p>
+            <p class="taks_title"><b>Description</b>: ${task.description}</p>
+            <button onclick="goBack()" class="taks_title-button">Back</button>
           `;
     } else {
       const taskDetailsDiv = document.getElementById("taskDetails");
