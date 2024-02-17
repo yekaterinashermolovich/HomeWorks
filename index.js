@@ -45,7 +45,7 @@ function clearInputFields() {
 
 function editTask(taskId) {
   const editUrl = `/edit/edit.html?id=${taskId}`;
-  window.location.assign(editUrl);
+  window.location.href = (editUrl);
 }
 
 function saveTask(task) {
@@ -147,7 +147,7 @@ function generateUniqueId() {
 
 function viewTaskDetails(taskId) {
   const detailsUrl = `details/details.html?id=${taskId}`;
-  window.location.assign(detailsUrl);
+  window.location.href = (detailsUrl);
 }
 
 function sortTasks() {
@@ -164,8 +164,3 @@ function filterTasks() {
   loadTasks(false, false, status);
 } 
 
-document
-  .getElementById("taskDescription")
-  .addEventListener("input", function () {
-    this.style.textAlign = "center"; 
-  });
