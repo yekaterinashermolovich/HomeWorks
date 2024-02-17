@@ -155,6 +155,12 @@ function sortTasks() {
   }
 } 
 
+function filterTasks() {
+  const status = document.getElementById("filterSelect").value;
+  loadTasks(false, false, status);
+} 
+
+
 
   
   
