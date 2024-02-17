@@ -146,6 +146,16 @@ function viewTaskDetails(taskId) {
   window.location.assign(detailsUrl);
 }
 
+function sortTasks() {
+  const sortBy = document.getElementById("sortSelect").value;
+  if (sortBy === "date") {
+    loadTasks(true);
+  } else if (sortBy === "title") {
+    loadTasks(false, true);
+  }
+} 
+
+
   
   
   
