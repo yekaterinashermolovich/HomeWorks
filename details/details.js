@@ -19,3 +19,9 @@ function loadTaskDetails() {
       taskDetailsDiv.innerHTML = "<p>Task not found.</p>";
     }
   }
+
+function goBack() {
+    window.history.back();
+  }
+  
+  document.addEventListener("DOMContentLoaded", loadTaskDetails);
