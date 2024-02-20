@@ -49,7 +49,7 @@ const App = () => {
 
 	return (
 		<>
-			<Form onSubmit={handleSubmit} inputsData={inputsData}/>
+			<div>Hellow World</div>/
 		</>
 	);
 }

@@ -1,5 +1,8 @@
 const path = require('path');
-const { ProvidePlugin, DefinePlugin } = require('webpack');
+const {
+	ProvidePlugin,
+	DefinePlugin,
+} = require('webpack');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
@@ -15,12 +18,13 @@ module.exports = (env, argv) => {
 			assetModuleFilename: pathData => {
 				const filepath = path
 					.dirname(pathData.filename)
-					.split("/")
+					.split('/')
 					.slice(1)
-					.join("/");
+					.join('/');
 				return `${filepath}/[name].[hash][ext][query]`;
 			},
 			clean: true,
+			publicPath: '/'
 		},
 		performance: {
 			hints: false,
@@ -55,7 +59,7 @@ module.exports = (env, argv) => {
 					},
 				},
 				{
-					test: /\.s?css$/,
+					test: /\.module\.s?css$/,
 					exclude: /node_modules/,
 					use: [
 						'style-loader',
@@ -68,7 +72,17 @@ module.exports = (env, argv) => {
 							},
 						},
 						'postcss-loader',
-						'sass-loader'
+						'sass-loader',
+					],
+				},
+				{
+					test: /\.s?css$/,
+					exclude: /(node_modules|(\.module\.s?css$))/,
+					use: [
+						'style-loader',
+						'css-loader',
+						'postcss-loader',
+						'sass-loader',
 					],
 				},
 			],
@@ -85,10 +99,10 @@ module.exports = (env, argv) => {
 			new ProvidePlugin({
 				React: 'react',
 			}),
-			new DefinePlugin({
-				PROJECT_NAME: `"${projectName}"`,
-				ASSETS_PATH: `"${projectName}/assets"`
-			}),
+			// new DefinePlugin({
+			// 	PROJECT_NAME: `"${projectName}"`,
+			// 	ASSETS_PATH: `"${projectName}/assets"`,
+			// }),
 			// new CopyWebpackPlugin({
 			// 	patterns: [
 			// 		{
