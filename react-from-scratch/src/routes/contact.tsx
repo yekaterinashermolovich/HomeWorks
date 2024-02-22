@@ -1,30 +1,34 @@
-import { Form } from "react-router-dom";
 import ContactType from "src/types/Contact";
+import { Form, LoaderFunctionArgs, useLoaderData } from "react-router-dom";
+import { getContact } from "../contacts";
+import Nullable from "src/types/Nullable";
+
+
+
+export async function loader({ params }: LoaderFunctionArgs): Promise< { contact: Nullable<ContactType> }> {
+  const contact = await getContact(params.contactId);
+  return { contact };
+}
+
 
 const Contact=() => {
-  const contact: ContactType = {
-    first: "Your",
-    last: "Name",
-    avatar: "https://placekitten.com/g/200/200",
-    twitter: "your_handle",
-    notes: "Some notes",
-    favorite: true,
-  };
 
+  const { contact } = useLoaderData() as{ contact: Nullable<ContactType>};
+    
   return (
     <div id="contact">
       <div>
         <img
-          key={contact.avatar}
-          src={contact.avatar}
+          key={contact?.avatar}
+          src={contact?.avatar}
         />
       </div>
 
       <div>
         <h1>
-          {contact.first || contact.last ? (
+          {contact?.first || contact?.last ? (
             <>
-              {contact.first} {contact.last}
+              {contact?.first} {contact?.last}
             </>
           ) : (
             <i>No Name</i>
@@ -32,18 +36,18 @@ const Contact=() => {
           <Favorite contact={contact} />
         </h1>
 
-        {contact.twitter && (
+        {contact?.twitter && (
           <p>
             <a
               target="_blank"
-              href={`https://twitter.com/${contact.twitter}`}
+              href={`https://twitter.com/${contact?.twitter}`}
             >
-              {contact.twitter}
+              {contact?.twitter}
             </a>
           </p>
         )}
 
-        {contact.notes && <p>{contact.notes}</p>}
+        {contact?.notes && <p>{contact?.notes}</p>}
 
         <div>
           <Form action="edit">
@@ -73,12 +77,12 @@ const Contact=() => {
 export default Contact;
 
 type FavoriteProps = {
-contact: ContactType
+contact: Nullable<ContactType>
 }
 
 const Favorite = ({ contact }:FavoriteProps) => {
   // yes, this is a `let` for later
-  let favorite = contact.favorite;
+  let favorite = contact?.favorite;
   return (
     <Form method="post">
       <button

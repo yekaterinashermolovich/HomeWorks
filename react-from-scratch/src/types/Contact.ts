@@ -1,5 +1,6 @@
 type ContactType = {
     id?: string,
+    createAt?: number,
     first?: string,
     last?: string,
     avatar?: string,
