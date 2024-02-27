@@ -13,7 +13,7 @@ __webpack_require__.r(__webpack_exports__);
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var App = function App() {
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_components_CounterRedux_CounterRedux__WEBPACK_IMPORTED_MODULE_0__["default"], null), "/");
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_components_CounterRedux_CounterRedux__WEBPACK_IMPORTED_MODULE_0__["default"], null));
 };
 /* harmony default export */ __webpack_exports__["default"] = (App);
 
@@ -40,6 +40,7 @@ __webpack_require__.r(__webpack_exports__);
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 
+
 var CounterRedux = function CounterRedux() {
   var count = (0,_store__WEBPACK_IMPORTED_MODULE_1__.useTypedSelector)(function (state) {
     return state.counterReducer;
@@ -47,11 +48,11 @@ var CounterRedux = function CounterRedux() {
   var dispatch = (0,_store__WEBPACK_IMPORTED_MODULE_1__.useTypedDispatch)();
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
     onClick: function onClick() {
-      return dispatch((0,_redux_slices_counterSlice__WEBPACK_IMPORTED_MODULE_0__.increment)());
+      return dispatch((0,_redux_slices_counterSlice__WEBPACK_IMPORTED_MODULE_0__.decrement)(5));
     }
   }, "-"), count, /*#__PURE__*/React.createElement("button", {
     onClick: function onClick() {
-      return dispatch((0,_redux_slices_counterSlice__WEBPACK_IMPORTED_MODULE_0__.increment)());
+      return dispatch((0,_redux_slices_counterSlice__WEBPACK_IMPORTED_MODULE_0__.increment)(5));
     }
   }, "+"));
 };
@@ -68,6 +69,7 @@ var CounterRedux = function CounterRedux() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   counterSlice: function() { return /* binding */ counterSlice; },
+/* harmony export */   decrement: function() { return /* binding */ decrement; },
 /* harmony export */   increment: function() { return /* binding */ increment; }
 /* harmony export */ });
 /* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @reduxjs/toolkit */ "./node_modules/@reduxjs/toolkit/dist/redux-toolkit.modern.mjs");
@@ -76,12 +78,17 @@ var counterSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createSlice)
   name: 'counter',
   initialState: 0,
   reducers: {
-    increment: function increment(state) {
-      return state + 1;
+    increment: function increment(state, action) {
+      return state + action.payload;
+    },
+    decrement: function decrement(state, action) {
+      return state - action.payload;
     }
   }
 });
-var increment = counterSlice.actions.increment;
+var _counterSlice$actions = counterSlice.actions,
+  increment = _counterSlice$actions.increment,
+  decrement = _counterSlice$actions.decrement;
 
 /* harmony default export */ __webpack_exports__["default"] = (counterSlice.reducer);
 
