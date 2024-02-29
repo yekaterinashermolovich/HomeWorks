@@ -37,7 +37,9 @@ condition ? ifTrue : ifFalse
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _redux_slices_counterSlice__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../redux/slices/counterSlice */ "./src/redux/slices/counterSlice.ts");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../store */ "./src/store.ts");
+/* harmony import */ var _redux_slices_stepSlice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../redux/slices/stepSlice */ "./src/redux/slices/stepSlice.ts");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
 
 
 
@@ -45,14 +47,25 @@ var CounterRedux = function CounterRedux() {
   var count = (0,_store__WEBPACK_IMPORTED_MODULE_1__.useTypedSelector)(function (state) {
     return state.counterReducer;
   });
+  var step = (0,_store__WEBPACK_IMPORTED_MODULE_1__.useTypedSelector)(function (state) {
+    return state.stepSlice;
+  });
   var dispatch = (0,_store__WEBPACK_IMPORTED_MODULE_1__.useTypedDispatch)();
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
     onClick: function onClick() {
-      return dispatch((0,_redux_slices_counterSlice__WEBPACK_IMPORTED_MODULE_0__.decrement)(5));
+      return dispatch((0,_redux_slices_counterSlice__WEBPACK_IMPORTED_MODULE_0__.decrement)(step));
     }
   }, "-"), count, /*#__PURE__*/React.createElement("button", {
     onClick: function onClick() {
-      return dispatch((0,_redux_slices_counterSlice__WEBPACK_IMPORTED_MODULE_0__.increment)(5));
+      return dispatch((0,_redux_slices_counterSlice__WEBPACK_IMPORTED_MODULE_0__.increment)(step));
+    }
+  }, "+"), /*#__PURE__*/React.createElement("button", {
+    onClick: function onClick() {
+      return dispatch((0,_redux_slices_stepSlice__WEBPACK_IMPORTED_MODULE_2__.decrement)());
+    }
+  }, "-"), step, /*#__PURE__*/React.createElement("button", {
+    onClick: function onClick() {
+      return dispatch((0,_redux_slices_stepSlice__WEBPACK_IMPORTED_MODULE_2__.increment)());
     }
   }, "+"));
 };
@@ -94,6 +107,40 @@ var _counterSlice$actions = counterSlice.actions,
 
 /***/ }),
 
+/***/ "./src/redux/slices/stepSlice.ts":
+/*!***************************************!*\
+  !*** ./src/redux/slices/stepSlice.ts ***!
+  \***************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   decrement: function() { return /* binding */ decrement; },
+/* harmony export */   increment: function() { return /* binding */ increment; },
+/* harmony export */   stepSlice: function() { return /* binding */ stepSlice; }
+/* harmony export */ });
+/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @reduxjs/toolkit */ "./node_modules/@reduxjs/toolkit/dist/redux-toolkit.modern.mjs");
+
+var stepSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createSlice)({
+  name: 'counterStep',
+  initialState: 1,
+  reducers: {
+    increment: function increment(state) {
+      return state + 1;
+    },
+    decrement: function decrement(state) {
+      return Math.max(1, state - 1);
+    }
+  }
+});
+var _stepSlice$actions = stepSlice.actions,
+  increment = _stepSlice$actions.increment,
+  decrement = _stepSlice$actions.decrement;
+
+/* harmony default export */ __webpack_exports__["default"] = (stepSlice.reducer);
+
+/***/ }),
+
 /***/ "./src/store.ts":
 /*!**********************!*\
   !*** ./src/store.ts ***!
@@ -105,15 +152,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   useTypedDispatch: function() { return /* binding */ useTypedDispatch; },
 /* harmony export */   useTypedSelector: function() { return /* binding */ useTypedSelector; }
 /* harmony export */ });
-/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @reduxjs/toolkit */ "./node_modules/@reduxjs/toolkit/dist/redux-toolkit.modern.mjs");
+/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @reduxjs/toolkit */ "./node_modules/@reduxjs/toolkit/dist/redux-toolkit.modern.mjs");
 /* harmony import */ var _redux_slices_counterSlice__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./redux/slices/counterSlice */ "./src/redux/slices/counterSlice.ts");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/dist/react-redux.mjs");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/dist/react-redux.mjs");
+/* harmony import */ var _src_redux_slices_stepSlice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../src/redux/slices/stepSlice */ "./src/redux/slices/stepSlice.ts");
 
 
 
-var store = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.configureStore)({
+
+var store = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.configureStore)({
   reducer: {
-    counterReducer: _redux_slices_counterSlice__WEBPACK_IMPORTED_MODULE_0__["default"]
+    counterReducer: _redux_slices_counterSlice__WEBPACK_IMPORTED_MODULE_0__["default"],
+    stepSlice: _src_redux_slices_stepSlice__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (store);
@@ -123,8 +173,8 @@ var store = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.configureStore)({
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
-var useTypedDispatch = react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch.withTypes();
-var useTypedSelector = react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector.withTypes();
+var useTypedDispatch = react_redux__WEBPACK_IMPORTED_MODULE_3__.useDispatch.withTypes();
+var useTypedSelector = react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector.withTypes();
 
 /***/ }),
 
