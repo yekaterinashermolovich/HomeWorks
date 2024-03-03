@@ -5,6 +5,8 @@ const port = 8000;
 
 const sleep = ms => new Promise((resolve => setTimeout(resolve, ms)));
 
+const nums = [1, 2];
+
 const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Method': 'GET, POST',
@@ -19,12 +21,29 @@ const getListener = (request, response) => {
 
 
    sleep(1000)
-    .then(() =>response.end(JSON.stringify('YOUR DATA')));
+    .then(() =>response.end(JSON.stringify(nums)));
 
 }
 
 const postListener = (request, response) => {
-    console.log('HELLO FROM POST')
+    console.log('HELLO FROM POST');
+
+    request.on('data', (data) => {
+        console.log(data);
+        console.log(data.toString());
+        console.log(JSON.parse(data.toString()));
+
+        nums.push(JSON.parse(data.toString()).data);
+
+    })
+
+    request.on('end', () => {
+        response.writeHead(200, headers);
+
+        sleep(1000)
+        .then(() =>response.end(JSON.stringify('SUCCESSFULLY ADDED')));    
+
+    })
 
 }
 
